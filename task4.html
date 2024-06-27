@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Date and Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        .output {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button id="showDateBtn">Show Date</button>
+        <div id="dateOutput" class="output"></div>
+    </div>
+    <div class="button-container">
+        <button id="showTimeBtn">Show Time</button>
+        <div id="timeOutput" class="output"></div>
+    </div>
+
+    <script>
+        document.getElementById('showDateBtn').addEventListener('click', function() {
+            document.getElementById('dateOutput').innerText = '7th March, 2023';
+        });
+
+        document.getElementById('showTimeBtn').addEventListener('click', function() {
+            const time = new Date('2023-03-07T17:54:26Z').toLocaleTimeString('en-GB', {
+                timeZone: 'Asia/Kolkata',
+                hour12: false
+            });
+            document.getElementById('timeOutput').innerText = time + ' GMT+0530 (Indian Standard Time)';
+        });
+    </script>
+</body>
+</html>

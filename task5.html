@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <div class="error" id="nameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <div class="error" id="emailError"></div>
+        </div>
+        <div class="form-group">
+            <label for="website">Website:</label>
+            <input type="url" id="website" name="website">
+            <div class="error" id="websiteError"></div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <div class="error" id="messageError"></div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('nameError');
+            if (!name) {
+                nameError.textContent = 'This field is required';
+                isValid = false;
+            } else {
+                nameError.textContent = '';
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailPattern.test(email)) {
+                emailError.textContent = 'A valid email address is required';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            // Website validation
+            const website = document.getElementById('website').value;
+            const websiteError = document.getElementById('websiteError');
+            const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+            if (!website || !urlPattern.test(website)) {
+                websiteError.textContent = 'A valid URL is required';
+                isValid = false;
+            } else {
+                websiteError.textContent = '';
+            }
+
+            // Message validation
+            const message = document.getElementById('message').value;
+            const messageError = document.getElementById('messageError');
+            if (!message) {
+                messageError.textContent = 'This field is required';
+                isValid = false;
+            } else {
+                messageError.textContent = '';
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                // Here you can add code to actually submit the form
+            }
+        });
+    </script>
+</body>
+</html>
